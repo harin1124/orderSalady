@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<th:block th:fragment="headerFragment">
+		<header class="admin-header-wrap">
+			<div class="admin-header">
+				<h1 class="main-logo"><a href="/admin/main.do"><span>ORDER SALADY</span><span>ADMIN</span></a></h1>
+				<div class="user-info" th:if="${session.userInfo}">
+					<a href="/admin/user/info.do"><i class="xi-profile"></i><span>내 정보</span></a>
+					<a href="/admin/user/logout.do"><i class="xi-log-out"></i><span>로그아웃</span></a>
+				</div>
+			</div>
+		</header>
+	</th:block>
+</html>

@@ -1,0 +1,48 @@
+@import "admin-variables.scss";
+
+.admin-header-wrap {
+	width:100%; height:80px;
+	float:left;
+	background:#2e384d;
+	.admin-header {
+		height:80px;
+		padding:0 30px;
+	}
+	.admin-header .main-logo {
+		display:inline-block;
+		float:left;
+		a {
+			display:inline-block; margin-top:19px;
+			font:20px $notoB; line-height:20px; color:#fff;
+			&:after {content:""; display:block; clear:both}
+		}
+		a span {
+			width:100%; float:left;
+			letter-spacing:-0.3px;
+			&:first-child {font-family:$notoR}
+			&:last-child {clear:both}
+		}
+	}
+	.admin-header .user-info {
+		display:inline-block;
+		margin-top:25px;
+		float:right;
+		a {
+			display:inline-block; float:left;
+			padding:5px 10px;
+			border:1px solid #3c4559; border-radius:3px;
+			transition:ease background .2s;
+			&:first-child {margin-right:8px}
+			i {
+				float:left;
+				font-size:20px; color:$cWhite
+			}
+			span {
+				float:left;
+				margin-top:4px; margin-left:3px;
+				font:12px $notoR; line-height:13px; color:$cSliver
+			}
+			&:hover, &:focus {background:#3c4559}
+		}
+	}
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration scan="true">
+	<!-- Appenders -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- <filter class="orderSalady.log.LogbackFilter"/> -->
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%boldCyan(VIEW) %boldYellow(%-5level) %green(%d{yyyy-MM-dd HH:mm:ss}) %boldMagenta([%logger{0}:%line]) %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- Logger -->
+	<logger name="saladyOrder" level="INFO" appender-ref="console"/>
+	
+	<!-- BeanFactory -->
+	<logger level="OFF" appender-ref="console" name="org.springframework.beans.factory.support.DefaultListableBeanFactory"/>
+	<!-- ClassPathBeanDefinitionScanner -->
+	<logger level="OFF" appender-ref="console" name="org.springframework.context.annotation.ClassPathBeanDefinitionScanner"/>
+	<!-- Security -->
+	<logger level="OFF" appender-ref="console" name="org.springframework.security.web.util.matcher.AntPathRequestMatcher"/>
+	<logger level="OFF" appender-ref="console" name="org.springframework.security.web.util.matcher.OrRequestMatcher"/>
+	<logger level="OFF" appender-ref="console" name="org.springframework.security.web.FilterChainProxy"/>
+	<!-- Thymeleaf -->
+	<logger level="OFF" appender-ref="console" name="org.thymeleaf.TemplateEngine"/>
+	<!-- Servlet -->
+	<logger level="INFO" appender-ref="console" name="org.	.web.servlet.DispatcherServlet"/>
+	<logger level="OFF" appender-ref="console" name="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"/>
+
+	<!-- Root Logger -->
+	<root level="context">
+		<appender-ref ref="console"/>
+	</root>
+</configuration>

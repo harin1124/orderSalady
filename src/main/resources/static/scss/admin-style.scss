@@ -1,0 +1,218 @@
+@import "common-variables.scss";
+@import "admin-variables.scss";
+
+html, body {
+	height:100%;
+	background:#0c1325;
+	&:after {content:""; display:block; clear:both}
+}
+
+.col {
+	float:left;
+	&.col-1 {width:$col1}
+	&.col-2 {width:$col2}
+	&.col-3 {width:$col3}
+	&.col-4 {width:$col4}
+	&.col-5 {width:$col5}
+}
+
+/* INPUT */
+input[type=text], input[type=password] {
+	border:1px solid #e0e7ff;
+	border-radius:3px;
+
+	&:focus {outline:none !important; border:1px solid #bdc9f1}
+
+	/* INPUT-SIZE */
+	&.size-sm {height:30px; padding:9px 15px; font-size:14px}	
+	&.size-md {height:40px; padding:12px 20px; font-size:16px}
+	&.size-lg {height:50px; padding:15px 25px; font-size:18px}
+
+	/* INPUT - COLOR */
+}
+
+select {
+	border:1px solid #e0e7ff;
+	border-radius:3px;
+	&:focus {outline:none !important; border:1px solid #cfd7f0}
+	/* INPUT-SIZE */
+	&.size-sm {height:30px; padding:0px 15px; font-size:14px}	
+	&.size-md {height:40px; padding:0px 20px; font-size:16px}
+	&.size-lg {height:50px; padding:0px 25px; font-size:18px}
+
+	/* INPUT - COLOR */
+}
+
+textarea {
+	padding:10px 15px;
+	border:1px solid #e0e7ff;
+	border-radius:3px;
+	font:13px $notoDL; line-height:18px;
+	&:focus {outline:none !important; border:1px solid #cfd7f0}
+	
+}
+
+/* BUTTON */
+.button {
+	font-family:$notoR; color:#fff;
+	border:none; border-radius:3px; cursor:pointer;
+	transition:ease box-shadow .2s;
+	
+	&:focus, &:hover {outline:none; box-shadow:0 3px 3px #00000050}
+	
+	&.size-icon {width:25px; height:25px; font-size:13px; line-height:13px}
+	&.size-sm {height:30px; padding:9px 15px; font-size:13px; line-height:13px}
+	&.size-md {height:40px; padding:12px 20px; font-size:14px; line-height:14px}
+	&.size-lg {height:50px; padding:15px 25px; font-size:16px; line-height:16px}
+	
+	&.c-blue {background:$cBlue}
+	&.c-green {background:$cGreen}
+	&.c-red {background:$cRed}
+	&.c-black {background:$cBlack}
+	&.c-yellow {background:$cYellow}
+	&.c-sliver {background:$cSliver; color:#2e384d}
+	&.c-white {background:$cWhite; color:#2e384d}
+}
+
+/* LINK */
+.link {
+	text-decoration:underline;
+	color:#456dff;
+	&:focus, &:hover {color:#2d4cbf}
+}
+
+/* ==================================
+PAGING
+================================== */
+.paging {
+	width:100%;
+	&:after {content:""; display:block; clear:both}
+	ul {
+		display:table;
+		margin:10px auto 0;
+		li {float:left; margin:0 3px;}
+		li button {
+			width:30px; height:30px;
+			font:12px $notoL;
+			border:1px solid #b8b8b8; background:#fff;
+			&:focus, &:hover {outline:none; background:#f3f3f3}
+			
+		}
+	}
+	.control {
+		.prevAll {}
+		.prev {}
+		.next {}
+		.nextAll {}
+	}
+	.num button {width:30px}
+	.num.on button {background:#f3f3f3; border:1px solid $cBlue !important}
+}
+
+
+
+/* ==================================
+TABLE
+================================== */
+.table {
+	width:100%;
+	th, td {
+		border:1px solid #cacaca;
+		font:12px $notoR;
+		vertical-align:middle;
+	}
+	th {height:35px; background:#e8e8e8}
+	td {height:20px; padding:8px;}
+}
+
+/* ==================================
+LAYOUT
+================================== */
+.component-frag-content-box {
+	width:800px; height:auto;
+	float:left;
+	margin:20px;
+	background:#fff; border-radius:3px;
+	&.inner {padding:20px}
+}
+
+.component-title-area {
+	h1 {
+		width:100%;
+		padding:9px 20px;
+		font:25px $notoB; letter-spacing:-0.5px;
+		border-bottom:1px solid #cecece;
+	}
+}
+
+.component-content-area {
+	padding-top:15px; padding-bottom:15px; padding-left:20px; padding-right:20px;
+	&:after {content:""; display:block; clear:both}
+}
+
+.component-bottom-action-area {
+	padding:15px 20px; border-top:1px solid #cecece;
+}
+
+.component-row {
+	&:after {content:""; display:block; clear:both}
+}
+
+
+.form-group {
+	padding-right:10px;
+	label {font:13px $notoDL; line-height:15px; letter-spacing:-0.3px}
+	.title {display:inline-block; width:100%}
+	&>.form-group {
+		&.row {margin-bottom:0;}
+	}
+
+	&.row {
+		label {display:inline-block; width:100%; margin-bottom:7px}
+		input, textarea {width:100%}
+	}
+	&.column {
+		input[type=radio], input[type=checkbox] {}
+	}
+	&.inner {display:inline-block}
+}
+
+/* ==================================
+PAGE DESIGN
+================================== */
+/* 사이드 바 포함 공통 영역 */
+.page-main-content {width:1124px; float:left}
+
+.page-common {float:left; margin-left:50px}
+
+/* 로그인 */
+.page-login {
+	width:400px; height:auto;
+	margin:50px auto;
+	padding:30px;
+	float:none;
+	background:#fff;
+	
+	input {width:100%}
+	input:first-child {margin-bottom:15px}
+	button {margin-top:15px}
+	
+	.link {margin-top:15px; float:right}
+}
+
+/* 어드민 - 메뉴 - 등록 */
+.page-menu-reg {
+	textarea {height:80px; resize:none}
+	.component-row {margin-bottom:20px}
+}
+
+/* 어드민 - 메뉴 - 목록 */
+.page-menu-list {
+	.mainTable {
+		margin-top:10px;
+		thead th:nth-of-type(1) {width:50px}
+		thead th:nth-of-type(2) {width:80px}
+		thead th:nth-of-type(4) {width:80px}
+		thead th:nth-of-type(5) {width:50px}
+	}
+}

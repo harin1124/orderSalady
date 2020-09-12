@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin/layout}">
+	<th:block layout:fragment="headScript"></th:block>
+	<th:block layout:fragment="content">
+		<section class="component-frag-content-box page-menu-reg">
+			<!--/*===============등록===============*/-->
+			<th:block th:if="${#strings.equals(PAGE_TYPE, 'REG')}">
+				<div class="component-title-area">
+					<h1>메뉴 등록</h1>
+				</div>
+				<form id="mainForm" name="mainForm" method="POST" action="/admin/menu/reg.do">
+					<div class="component-content-area">
+						<!-- 기본 정보 -->
+						<div class="component-row">
+							<div class="col col-3 form-group row">
+								<label for="MENU_TYPE">메뉴 타입</label>
+								<select id="MENU_TYPE" class="size-sm">
+									<option th:each="MENU_TYPE : ${MENU_TYPE_LIST}" th:text="${MENU_TYPE.KO_NAME}">1</option>
+								</select>
+							</div>
+							<div class="col col-3 form-group row">
+								<label for="koName">메뉴 한글명</label>
+								<input type="text" id="koName" name="KO_NAME" class="size-sm">
+							</div>
+							<div class="col col-3 form-group row">
+								<label for="enName">메뉴 영문명</label>
+								<input type="text" id="enName" name="KO_NAME" class="size-sm">
+							</div>
+						</div>
+						
+						<div class="component-row">
+							<div class="col col-3 form-group row">
+								<label for="price">판매가</label>
+								<input type="text" id="price" name="PRICE" class="size-sm">
+							</div>
+						</div>
+						
+						
+						<div class="component-row">
+							<div class="col col-1 form-group row">
+								<label for="menuDesc">메뉴 설명</label>
+								<textarea id="menuDesc" name="MENU_DESC"></textarea>
+							</div>
+						</div>
+						
+						<!-- 가격 정보 -->
+						<div class="component-row">
+							<div class="col col-3 form-group column saleLimitInput">
+								<label for="" class="title">판매기간 지정 여부</label>
+								<div class="form-group inner">
+									<label for="salePeriodY">지정</label>
+									<input type="radio" name="SALE_PERIOD_YN" id="salePeriodY" value="Y">
+								</div>
+								<div class="form-group inner">
+									<label for="salePeriodN">미지정</label>
+									<input type="radio" name="SALE_PERIOD_YN" id="salePeriodN" value="N" checked="checked">
+								</div>
+							</div>
+						
+							<div class="col col-3 form-group row">
+								<label for="saleStartDate">판매 시작일</label>
+								<input type="text" id="saleStartDate" name="SALE_START_DATE" class="size-sm useDatePickerInput salePeriodInput" disabled="disabled">
+							</div>
+							<div class="col col-3 form-group row">
+								<label for="saleEndDate">판매 종료일</label>
+								<input type="text" id="saleEndDate" name="SALE_END_DATE" class="size-sm useDatePickerInput salePeriodInput" disabled="disabled">
+							</div>
+						</div>
+						
+						<div class="component-row">
+							<div class="col col-4 form-group column saleLimitInput">
+								<label for="" class="title">할인 여부</label>
+								<div class="form-group inner">
+									<label for="discountY">할인</label>
+									<input type="radio" name="DISCOUNT_YN" id="discountY" value="Y">
+								</div>
+								<div class="form-group inner">
+									<label for="discountN">미할인</label>
+									<input type="radio" name="DISCOUNT_YN" id="discountN" value="N" checked="checked">
+								</div>
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="discountPrice">할인가</label>
+								<input type="text" id="discountPrice" name="DISCOUNT_PRICE" class="size-sm discountPriceInput" disabled="disabled">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="discountStartDate">할인 시작일</label>
+								<input type="text" id="discountStartDate" name="DISCOUNT_START_DATE" class="size-sm useDatePickerInput discountPriceInput" disabled="disabled">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="discountEndDate">할인 종료일</label>
+								<input type="text" id="discountEndDate" name="DISCOUNT_END_DATE" class="size-sm useDatePickerInput discountPriceInput" disabled="disabled">
+							</div>
+						</div>
+						
+						<!-- 영양 정보 -->
+						<div class="component-row">
+							<div class="col col-4 form-group row">
+								<label for="capacity">용량</label>
+								<input type="text" id="capacity" name="CAPACITY" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="calories">칼로리</label>
+								<input type="text" id="calories" name="CALORIES" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="carbohydrates">탄수화물(g)</label>
+								<input type="text" id="carbohydrates" name="CARBOHYDRATES" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="sugar">당류(g)</label>
+								<input type="text" id="sugar" name="SUGAR" class="size-sm">
+							</div>
+						</div>
+						<div class="component-row">
+							<div class="col col-4 form-group row">
+								<label for="protein">단백질(g)</label>
+								<input type="text" id="protein" name="PROTEIN" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="fat">지방(g)</label>
+								<input type="text" id="fat" name="FAT" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="transFat">트랜스지방(g)</label>
+								<input type="text" id="transFat" name="TRANS_FAT" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="saturatedFat">포화지방(g)</label>
+								<input type="text" id="saturatedFat" name="SATURATED_FAT" class="size-sm">
+							</div>
+						</div>
+						<div class="component-row">
+							<div class="col col-4 form-group row">
+								<label for="sodium">나트륨(mg)</label>
+								<input type="text" id="sodium" name="SODIUM" class="size-sm">
+							</div>
+						</div>
+						<div class="component-row">
+							<p>최종 판매가 : <span>185,000</span></p>
+						</div>
+					</div>
+					<div class="component-bottom-action-area">
+						<button type="button" class="button size-sm c-blue saveBtn">저장</button>
+						<button type="button" class="button size-sm c-sliver">목록으로</button>
+					</div>
+				</form>
+			</th:block>
+			
+			<!--/*===============수정===============*/-->
+			<th:block th:if="${#strings.equals(PAGE_TYPE, 'EDIT')}">
+				<div class="component-title-area">
+					<h1>메뉴 수정</h1>
+				</div>
+				<form id="mainForm" name="mainForm" method="POST" action="/admin/menu/edit.do">
+					<textarea th:text="${MENU_INFO}"></textarea>
+					<div class="component-content-area">
+						<!-- 기본 정보 -->
+						<div class="component-row">
+							<div class="col col-3 form-group row">
+								<label for="MENU_TYPE">메뉴 타입</label>
+								<select id="MENU_TYPE" class="size-sm">
+									<option th:each="MENU_TYPE : ${MENU_TYPE_LIST}" th:text="${MENU_TYPE.KO_NAME}">1</option>
+								</select>
+							</div>
+							<div class="col col-3 form-group row">
+								<label for="koName">메뉴 한글명</label>
+								<input type="text" id="koName" name="KO_NAME" class="size-sm">
+							</div>
+							<div class="col col-3 form-group row">
+								<label for="enName">메뉴 영문명</label>
+								<input type="text" id="enName" name="KO_NAME" class="size-sm">
+							</div>
+						</div>
+						
+						<div class="component-row">
+							<div class="col col-3 form-group row">
+								<label for="price">판매가</label>
+								<input type="text" id="price" name="PRICE" class="size-sm">
+							</div>
+						</div>
+						
+						
+						<div class="component-row">
+							<div class="col col-1 form-group row">
+								<label for="menuDesc">메뉴 설명</label>
+								<textarea id="menuDesc" name="MENU_DESC"></textarea>
+							</div>
+						</div>
+						
+						<!-- 가격 정보 -->
+						<div class="component-row">
+							<div class="col col-3 form-group column saleLimitInput">
+								<label for="" class="title">판매기간 지정 여부</label>
+								<div class="form-group inner">
+									<label for="salePeriodY">지정</label>
+									<input type="radio" name="SALE_PERIOD_YN" id="salePeriodY" value="Y">
+								</div>
+								<div class="form-group inner">
+									<label for="salePeriodN">미지정</label>
+									<input type="radio" name="SALE_PERIOD_YN" id="salePeriodN" value="N" checked="checked">
+								</div>
+							</div>
+						
+							<div class="col col-3 form-group row">
+								<label for="saleStartDate">판매 시작일</label>
+								<input type="text" id="saleStartDate" name="SALE_START_DATE" class="size-sm useDatePickerInput salePeriodInput" disabled="disabled">
+							</div>
+							<div class="col col-3 form-group row">
+								<label for="saleEndDate">판매 종료일</label>
+								<input type="text" id="saleEndDate" name="SALE_END_DATE" class="size-sm useDatePickerInput salePeriodInput" disabled="disabled">
+							</div>
+						</div>
+						
+						<div class="component-row">
+							<div class="col col-4 form-group column saleLimitInput">
+								<label for="" class="title">할인 여부</label>
+								<div class="form-group inner">
+									<label for="discountY">할인</label>
+									<input type="radio" name="DISCOUNT_YN" id="discountY" value="Y">
+								</div>
+								<div class="form-group inner">
+									<label for="discountN">미할인</label>
+									<input type="radio" name="DISCOUNT_YN" id="discountN" value="N" checked="checked">
+								</div>
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="discountPrice">할인가</label>
+								<input type="text" id="discountPrice" name="DISCOUNT_PRICE" class="size-sm discountPriceInput" disabled="disabled">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="discountStartDate">할인 시작일</label>
+								<input type="text" id="discountStartDate" name="DISCOUNT_START_DATE" class="size-sm useDatePickerInput discountPriceInput" disabled="disabled">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="discountEndDate">할인 종료일</label>
+								<input type="text" id="discountEndDate" name="DISCOUNT_END_DATE" class="size-sm useDatePickerInput discountPriceInput" disabled="disabled">
+							</div>
+						</div>
+						
+						<!-- 영양 정보 -->
+						<div class="component-row">
+							<div class="col col-4 form-group row">
+								<label for="capacity">용량</label>
+								<input type="text" id="capacity" name="CAPACITY" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="calories">칼로리</label>
+								<input type="text" id="calories" name="CALORIES" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="carbohydrates">탄수화물(g)</label>
+								<input type="text" id="carbohydrates" name="CARBOHYDRATES" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="sugar">당류(g)</label>
+								<input type="text" id="sugar" name="SUGAR" class="size-sm">
+							</div>
+						</div>
+						<div class="component-row">
+							<div class="col col-4 form-group row">
+								<label for="protein">단백질(g)</label>
+								<input type="text" id="protein" name="PROTEIN" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="fat">지방(g)</label>
+								<input type="text" id="fat" name="FAT" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="transFat">트랜스지방(g)</label>
+								<input type="text" id="transFat" name="TRANS_FAT" class="size-sm">
+							</div>
+							<div class="col col-4 form-group row">
+								<label for="saturatedFat">포화지방(g)</label>
+								<input type="text" id="saturatedFat" name="SATURATED_FAT" class="size-sm">
+							</div>
+						</div>
+						<div class="component-row">
+							<div class="col col-4 form-group row">
+								<label for="sodium">나트륨(mg)</label>
+								<input type="text" id="sodium" name="SODIUM" class="size-sm">
+							</div>
+						</div>
+						<div class="component-row">
+							<p>최종 판매가 : <span>185,000</span></p>
+						</div>
+					</div>
+					<div class="component-bottom-action-area">
+						<button type="button" class="button size-sm c-blue saveBtn">저장</button>
+						<button type="button" class="button size-sm c-sliver">목록으로</button>
+					</div>
+				</form>
+			</th:block>
+		</section>
+	</th:block> <!-- //content -->
+	<script layout:fragment="script">
+		$(document).ready(function(){
+			$(".useDatePickerInput").datepicker({dateFormat:"yy-mm-dd"});
+
+			//판매기간 RADIO
+			$("input[name=SALE_PERIOD_YN]").on('change', function(){
+				if($(this).val()=="Y"){
+					$(".salePeriodInput").attr("disabled", false);
+				}else{
+					$(".salePeriodInput").attr("disabled", true).val("");
+				}
+			})
+			
+			//할인 RADIO
+			$("input[name=DISCOUNT_YN]").on('change', function(){
+				if($(this).val()=="Y"){
+					$(".discountPriceInput").attr("disabled", false);
+				}else{
+					$(".discountPriceInput").attr("disabled", true).val("");
+				}
+			});
+			
+			//저장
+			$(".saveBtn").on('click', function(e){
+				var $f=$("#mainForm");
+				var $el;
+				
+				//VALIDATION
+				$el=$f.find("#koName");
+				if($el.val()==""){
+					$el.focus();
+					alert("필수 입력항목입니다.");
+					return false;
+				}
+				$el=$f.find("#price");
+				if($el.val()==""){
+					$el.focus();
+					alert("필수 입력항목입니다.");
+					return false;
+				}
+				$el=$("#discountPrice");
+				if($("input[name=DISCOUNT_YN]:checked").val()=="Y" && $el.val()==""){
+					$el.focus();
+					alert("할인을 지정한 경우, 할인가를 반드시 입력해야 합니다.");
+					return false;
+				}
+				$el=$("input[name=SALE_PERIOD_YN]:checked");
+				if($el.val()=="Y" && $("#saleStartDate").val()=="" && $("#saleEndDate").val()){
+					$el.focus();
+					alert("판매 기간 지정 시, 판매 기간 시작일 혹은 종료일이 반드시 존재해야 합니다.");
+					return false;
+				}
+				$f.submit();
+			})
+		});
+	</script>
+</html>

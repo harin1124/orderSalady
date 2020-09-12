@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin/layout}">
+	<th:block layout:fragment="headScript"></th:block>
+	<th:block layout:fragment="content">
+		<section class="component-frag-content-box page-menu-list">
+			<div class="component-title-area">
+				<h1>메뉴 목록</h1>
+			</div>
+			<div class="component-content-area">
+				<button type="button" class="button size-sm c-blue" onclick="location.href='/admin/menu/reg.do'">메뉴 등록</button>
+				<button type="button" class="button size-sm c-blue chkMenuDelete">선택 메뉴 삭제</button>
+				<table class="table mainTable">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="allMenuChk"></th>
+							<th>메뉴 번호</th>
+							<th>메뉴명(KOR)</th>
+							<th>가격</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="M : ${MENU_LIST}">
+							<td class="center"><input type="checkbox" th:value="${M.ROW_SEQ}" class="menuChk"></td>
+							<td th:text="${M.ROW_SEQ}"></td>
+							<td th:text="${M.KO_NAME}"></td>
+							<td class="center" th:text="${M.PRICE}"></td>
+							<td class="center"><button type="button" class="button size-icon c-sliver editBtn" th:value="${M.ROW_SEQ}" title="수정"><i class="xi-pen"></i></button></td>
+						</tr>
+					</tbody>
+					<!--
+					<select id="MENU_TYPE_SEQ" class="size-sm">
+						<option th:each="MENU_TYPE : ${MENU_TYPE_LIST}" th:text="${MENU_TYPE.KO_NAME}">1</option>
+					</select>
+					-->
+				</table>
+				
+				<th:block th:if="${PAGING_INFO.totalCnt > 0}">
+					<div class="paging">
+						<ul>
+							<li onclick="location.href='/admin/menu/list.do?pageNo=1'"><button type="button" class="control prevAll">&lt;&lt;</button></li>
+							<li th:onclick="|location.href='/admin/menu/list.do?pageNo=${PAGING_INFO.startPage-1}'|"><button type="button" class="control prev">&lt;</button></li>
+							<th:block th:each="no : ${#numbers.sequence(PAGING_INFO.startPage, PAGING_INFO.endPage)}">
+								<th:block th:if="${PAGING_INFO.nowPageNo eq no}">
+									<li class="on num" th:onclick="|location.href='/admin/menu/list.do?pageNo=${no}'|"><button type="button" th:text="${no}"></button></li>
+								</th:block>
+								<th:block th:if="${PAGING_INFO.nowPageNo ne no}">
+									<li class="num" th:onclick="|location.href='/admin/menu/list.do?pageNo=${no}'|"><button type="button" th:text="${no}"></button></li>
+								</th:block>
+							</th:block>
+							<li th:onclick="|location.href='/admin/menu/list.do?pageNo=${PAGING_INFO.endPage+1}'|"><button type="button" class="control next">&gt;</button></li>
+							<li th:onclick="|location.href='/admin/menu/list.do?pageNo=${PAGING_INFO.totalPageCnt}'|"><button type="button" class="control nextAll">&gt;&gt;</button></li>
+						</ul>
+					</div>
+				</th:block>
+			</div>
+		</section>
+	</th:block>
+	<script layout:fragment="script">
+		$(document).ready(function(){
+			//전체 메뉴 선택
+			$("#allMenuChk").on('change', function(){
+				$(".mainTable").find(".menuChk").prop("checked", ($(this).prop("checked")?true:false));
+			});
+			
+			//메뉴 수정 버튼
+			$(".editBtn").on('click', function(){
+				location.href="/admin/menu/edit.do?rowSeq="+$(this).val();
+			});
+		});
+	</script>
+</html>

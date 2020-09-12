@@ -1,0 +1,35 @@
+@font-face {
+	font-family:'notoT';
+	font-style:normal;
+	src:url(./woff/NotoSansKR-Thin-Hestia.woff) format('woff');
+}
+@font-face {
+	font-family:'notoL';
+	font-style:normal;
+    src:url(./woff/NotoSansKR-Light-Hestia.woff) format('woff');
+}
+@font-face {
+	font-family:'notoDL';
+	font-style:normal;
+	src:url(./woff/NotoSansKR-DemiLight-Hestia.woff) format('woff');
+}
+@font-face {
+	font-family:'notoR';
+	font-style:normal;
+	src:url(./woff/NotoSansKR-Regular-Hestia.woff) format('woff');
+}
+@font-face {
+	font-family:'notoM';
+	font-style:normal;
+	src:url(./woff/NotoSansKR-Medium-Hestia.woff) format('woff');
+}
+@font-face {
+	font-family:'notoB';
+	font-style:normal;
+	src:url(./woff/NotoSansKR-Bold-Hestia.woff) format('woff');
+}
+@font-face {
+	font-family:'notoBlack';
+	font-style:normal;
+	src:url(./woff/NotoSansKR-Black-Hestia.woff) format('woff');
+}

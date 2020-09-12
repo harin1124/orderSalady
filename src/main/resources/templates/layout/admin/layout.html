@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+	<title>오더 샐러디 관리자</title>
+	
+	<!-- COMMON STYLE -->
+	<link rel="stylesheet" th:href="|/css/reset.css?param=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')}|">
+	<link rel="stylesheet" th:href="|/css/fonts.css?param=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')}|">
+	<link rel="stylesheet" th:href="|/css/common.css?param=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')}|">
+	<link rel="stylesheet" th:href="|/css/admin-header.css?param=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')}|">
+	<link rel="stylesheet" th:href="|/css/admin-footer.css?param=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')}|">
+	<link rel="stylesheet" th:href="|/css/admin-side.css?param=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')}|">
+	<link rel="stylesheet" th:href="|/css/admin-style.css?param=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')}|">
+	<link rel="stylesheet" href="/plugins/jquery-ui-1.12.1/jquery-ui.css">
+	
+	<!-- COMMON SCRIPT -->
+	<script src="/plugins/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+	<script src="/plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<script src="/js/side-bar.js"></script>
+	
+	<!-- PAGE SCRIPT -->
+	<th:block layout:fragment="headScript"></th:block>
+</head>
+<body>
+	<th:block th:replace="layout/admin/header :: headerFragment"></th:block>
+	<div class="page-main-content">
+		<th:block th:if="${session.userInfo}">
+			<th:block th:replace="layout/admin/side :: sideFragment"></th:block>
+		</th:block>
+		<th:block layout:fragment="content"></th:block>
+	</div>
+</body>
+<script layout:fragment="script"></script>
+</html>
+
