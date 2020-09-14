@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import lombok.RequiredArgsConstructor;
+import orderSalady.util.ApiRequest;
 import orderSalady.util.Util;
 
 @Service
@@ -24,6 +25,7 @@ public class AdminMenuService {
 	
 	private final Util util;
 	private final RestTemplate restTemplate;
+	private final Gson gson;
 	
 	@Value("${paging.pageCnt}")
 	private String pageCnt;
@@ -44,32 +46,20 @@ public class AdminMenuService {
 		mv.addObject("PAGING_INFO", pagingInfo);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void pageAdminMenuReg(ModelAndView mv)throws Exception{
 		HashMap<String, Object> paramMap=new HashMap<String, Object>();
 		paramMap.put("OPTION", "N");
 		
 		// 메뉴 타입 목록 가져오기
-		String menuTypeList=restTemplate.getForObject(util.getApiUrl()+"/admin/menu/menu-type-list", String.class, paramMap);
-		System.out.println("문자열 : "+menuTypeList);
-		
-		Gson gson=new Gson();
-		/*
-		JSONObject obj=null;
-        try {
-             obj=(JSONObject)parser.parse(menuTypeList);
-        } catch (ParseException e){
-             System.out.println("변환에 실패");
-             e.printStackTrace();
-        }
-        System.out.println("OBJ : "+obj);
-        System.out.println("OBJ : "+obj.getClass());
-        */
-		
-
-
-		
+		String menuTypeList=ApiRequest.get("/admin/menu/menu-type-list", paramMap);
 		mv.addObject("MENU_TYPE_LIST", menuTypeList);
+
+		// PUT 테스트
+		ApiRequest.put("/admin/menu/update", paramMap);
+
+
+		
+		
 	}
 	
 	public int actionAdminMenuReg(HashMap<String, Object> paramMap)throws Exception{
