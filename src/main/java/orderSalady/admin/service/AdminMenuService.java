@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-
 import lombok.RequiredArgsConstructor;
 import orderSalady.util.ApiRequest;
 import orderSalady.util.Util;
@@ -25,7 +23,6 @@ public class AdminMenuService {
 	
 	private final Util util;
 	private final RestTemplate restTemplate;
-	private final Gson gson;
 	
 	@Value("${paging.pageCnt}")
 	private String pageCnt;
@@ -42,6 +39,8 @@ public class AdminMenuService {
 		HashMap<String, Object> pagingInfo=new HashMap<String, Object>();
 		pagingInfo=restTemplate.postForObject(util.getApiUrl()+"/admin/menu/menu-list/paging", paramMap, HashMap.class);
 		
+		
+		// 이건 한번에 처리 될 수 있도록 ...
 		mv.addObject("MENU_LIST", menuList);
 		mv.addObject("PAGING_INFO", pagingInfo);
 	}
@@ -53,13 +52,6 @@ public class AdminMenuService {
 		// 메뉴 타입 목록 가져오기
 		String menuTypeList=ApiRequest.get("/admin/menu/menu-type-list", paramMap);
 		mv.addObject("MENU_TYPE_LIST", menuTypeList);
-
-		// PUT 테스트
-		ApiRequest.put("/admin/menu/update", paramMap);
-
-
-		
-		
 	}
 	
 	public int actionAdminMenuReg(HashMap<String, Object> paramMap)throws Exception{

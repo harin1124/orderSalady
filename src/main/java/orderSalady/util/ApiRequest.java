@@ -6,6 +6,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
@@ -28,19 +29,19 @@ public class ApiRequest {
 		return new RestTemplate().postForObject(API+uri, null, String.class);
 	}
 	
-	public static void put(String uri, HashMap<String, Object> paramMap){
-		//new RestTemplate().exchange(url, method, requestEntity, responseType)
-		HttpHeaders headers=new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		// PARAM MAP을 유지하여 PUT으로 보내는 법.. 현재 API 서버에서는 인식하지 못하는 중
-		HttpEntity<HashMap> httpEntity=new HttpEntity<HashMap>(paramMap, headers);
-		System.out.println("보내는 파라미터 : "+paramMap);
-		
-		new RestTemplate().exchange(API+uri, HttpMethod.PUT, httpEntity, String.class, paramMap);
-		//new RestTemplate().put(API+uri, paramMap);
+	public static String put(String uri, HashMap<String, Object> paramMap){
+		HttpHeaders httpHeaders=new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<?> httpEntity=new HttpEntity<>(paramMap, httpHeaders);
+		ResponseEntity<String> req=new RestTemplate().exchange(API+uri, HttpMethod.PUT, httpEntity, String.class);
+		return req.getBody();
 	}
 	
-	public static void delete(String uri, HashMap<String, Object> paramMap){
-		new RestTemplate().delete(API+uri, paramMap);
+	public static String delete(String uri, HashMap<String, Object> paramMap){
+		HttpHeaders httpHeaders=new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<?> httpEntity=new HttpEntity<>(paramMap, httpHeaders);
+		ResponseEntity<String> req=new RestTemplate().exchange(API+uri, HttpMethod.DELETE, httpEntity, String.class);
+		return req.getBody();
 	}
 }
