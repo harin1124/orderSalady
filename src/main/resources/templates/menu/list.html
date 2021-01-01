@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{layout/layout}">
+<div layout:fragment="content" class="mainApp">
+	<section class="menuCategorySection">
+		<h2>웜볼</h2>
+		<ul class="menuList">
+			<li v-for="i in menuData.warmBowl.content">
+				<a :href="'/menu/'+i.rowSeq" class="box">
+					<div class="imageBox">
+						<img src="https://dummyimage.com/400x150/ededed/5e5e5e.png&text=sample+image" alt="">
+						<ul class="chip">
+							<li v-if="i.veganYn=='Y'"><i class="xi-garden" title="비건 메뉴"></i></li>
+							<li v-if="i.discountYn=='Y'"><i class="xi-coupon" title="세일 메뉴"></i></li>
+						</ul>
+					</div>
+					<div class="nameBox">
+						<p>{{i.koName}}</p>
+						<p>{{i.enName}}</p>
+					</div>
+					<div class="priceBox">
+						<template v-if="i.discountYn=='Y'">
+							<span class="now">{{i.discountPrice}}</span>
+							<span class="prev">{{i.price}}</span>
+						</template>
+						<template v-if="i.discountYn=='N'">
+							<span class="now">{{i.price}}</span>
+						</template>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<section class="menuCategorySection">
+		<h2>샐러디</h2>
+		<ul class="menuList">
+			<li v-for="i in menuData.salady.content">
+				<a :href="'/menu/'+i.rowSeq" class="box">
+					<div class="imageBox">
+						<img src="https://dummyimage.com/400x150/ededed/5e5e5e.png&text=sample+image" alt="">
+						<ul class="chip">
+							<li v-if="i.veganYn=='Y'"><i class="xi-garden" title="비건 메뉴"></i></li>
+							<li v-if="i.discountYn=='Y'"><i class="xi-coupon" title="세일 메뉴"></i></li>
+						</ul>
+					</div>
+					<div class="nameBox">
+						<p>{{i.koName}}</p>
+						<p>{{i.enName}}</p>
+					</div>
+					<div class="priceBox">
+						<template v-if="i.discountYn=='Y'">
+							<span class="now">{{i.discountPrice}}</span>
+							<span class="prev">{{i.price}}</span>
+						</template>
+						<template v-if="i.discountYn=='N'">
+							<span class="now">{{i.price}}</span>
+						</template>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<section class="menuCategorySection">
+		<h2>샌드</h2>
+		<ul class="menuList">
+			<li v-for="i in menuData.sand.content">
+				<a :href="'/menu/'+i.rowSeq" class="box">
+					<div class="imageBox">
+						<img src="https://dummyimage.com/400x150/ededed/5e5e5e.png&text=sample+image" alt="">
+						<ul class="chip">
+							<li v-if="i.veganYn=='Y'"><i class="xi-garden" title="비건 메뉴"></i></li>
+							<li v-if="i.discountYn=='Y'"><i class="xi-coupon" title="세일 메뉴"></i></li>
+						</ul>
+					</div>
+					<div class="nameBox">
+						<p>{{i.koName}}</p>
+						<p>{{i.enName}}</p>
+					</div>
+					<div class="priceBox">
+						<template v-if="i.discountYn=='Y'">
+							<span class="now">{{i.discountPrice}}</span>
+							<span class="prev">{{i.price}}</span>
+						</template>
+						<template v-if="i.discountYn=='N'">
+							<span class="now">{{i.price}}</span>
+						</template>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<section class="menuCategorySection">
+		<h2>랩</h2>
+		<ul class="menuList">
+			<li v-for="i in menuData.wrap.content">
+				<a :href="'/menu/'+i.rowSeq" class="box">
+					<div class="imageBox">
+						<img src="https://dummyimage.com/400x150/ededed/5e5e5e.png&text=sample+image" alt="">
+						<ul class="chip">
+							<li v-if="i.veganYn=='Y'"><i class="xi-garden" title="비건 메뉴"></i></li>
+							<li v-if="i.discountYn=='Y'"><i class="xi-coupon" title="세일 메뉴"></i></li>
+						</ul>
+					</div>
+					<div class="nameBox">
+						<p>{{i.koName}}</p>
+						<p>{{i.enName}}</p>
+					</div>
+					<div class="priceBox">
+						<template v-if="i.discountYn=='Y'">
+							<span class="now">{{i.discountPrice}}</span>
+							<span class="prev">{{i.price}}</span>
+						</template>
+						<template v-if="i.discountYn=='N'">
+							<span class="now">{{i.price}}</span>
+						</template>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<section class="menuCategorySection">
+		<h2>웜랩</h2>
+		<ul class="menuList">
+			<li v-for="i in menuData.warmWrap.content">
+				<a :href="'/menu/'+i.rowSeq" class="box">
+					<div class="imageBox">
+						<img src="https://dummyimage.com/400x150/ededed/5e5e5e.png&text=sample+image" alt="">
+						<ul class="chip">
+							<li v-if="i.veganYn=='Y'"><i class="xi-garden" title="비건 메뉴"></i></li>
+							<li v-if="i.discountYn=='Y'"><i class="xi-coupon" title="세일 메뉴"></i></li>
+						</ul>
+					</div>
+					<div class="nameBox">
+						<p>{{i.koName}}</p>
+						<p>{{i.enName}}</p>
+					</div>
+					<div class="priceBox">
+						<template v-if="i.discountYn=='Y'">
+							<span class="now">{{i.discountPrice}}</span>
+							<span class="prev">{{i.price}}</span>
+						</template>
+						<template v-if="i.discountYn=='N'">
+							<span class="now">{{i.price}}</span>
+						</template>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<section class="menuCategorySection">
+		<h2>베이스</h2>
+		<ul class="menuList">
+			<li v-for="i in menuData.base.content">
+				<a :href="'/menu/'+i.rowSeq" class="box">
+					<div class="imageBox">
+						<img src="https://dummyimage.com/400x150/ededed/5e5e5e.png&text=sample+image" alt="">
+						<ul class="chip">
+							<li v-if="i.veganYn=='Y'"><i class="xi-garden" title="비건 메뉴"></i></li>
+							<li v-if="i.discountYn=='Y'"><i class="xi-coupon" title="세일 메뉴"></i></li>
+						</ul>
+					</div>
+					<div class="nameBox">
+						<p>{{i.koName}}</p>
+						<p>{{i.enName}}</p>
+					</div>
+					<div class="priceBox">
+						<template v-if="i.discountYn=='Y'">
+							<span class="now">{{i.discountPrice}}</span>
+							<span class="prev">{{i.price}}</span>
+						</template>
+						<template v-if="i.discountYn=='N'">
+							<span class="now">{{i.price}}</span>
+						</template>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<section class="menuCategorySection">
+		<h2>메인토핑</h2>
+		<ul class="menuList">
+			<li v-for="i in menuData.mainTopping.content">
+				<a :href="'/menu/'+i.rowSeq" class="box">
+					<div class="imageBox">
+						<img src="https://dummyimage.com/400x150/ededed/5e5e5e.png&text=sample+image" alt="">
+						<ul class="chip">
+							<li v-if="i.veganYn=='Y'"><i class="xi-garden" title="비건 메뉴"></i></li>
+							<li v-if="i.discountYn=='Y'"><i class="xi-coupon" title="세일 메뉴"></i></li>
+						</ul>
+					</div>
+					<div class="nameBox">
+						<p>{{i.koName}}</p>
+						<p>{{i.enName}}</p>
+					</div>
+					<div class="priceBox">
+						<template v-if="i.discountYn=='Y'">
+							<span class="now">{{i.discountPrice}}</span>
+							<span class="prev">{{i.price}}</span>
+						</template>
+						<template v-if="i.discountYn=='N'">
+							<span class="now">{{i.price}}</span>
+						</template>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<section class="menuCategorySection">
+		<h2>서브토핑</h2>
+		<ul class="menuList">
+			<li v-for="i in menuData.subTopping.content">
+				<a :href="'/menu/'+i.rowSeq" class="box">
+					<div class="imageBox">
+						<img src="https://dummyimage.com/400x150/ededed/5e5e5e.png&text=sample+image" alt="">
+						<ul class="chip">
+							<li v-if="i.veganYn=='Y'"><i class="xi-garden" title="비건 메뉴"></i></li>
+							<li v-if="i.discountYn=='Y'"><i class="xi-coupon" title="세일 메뉴"></i></li>
+						</ul>
+					</div>
+					<div class="nameBox">
+						<p>{{i.koName}}</p>
+						<p>{{i.enName}}</p>
+					</div>
+					<div class="priceBox">
+						<template v-if="i.discountYn=='Y'">
+							<span class="now">{{i.discountPrice}}</span>
+							<span class="prev">{{i.price}}</span>
+						</template>
+						<template v-if="i.discountYn=='N'">
+							<span class="now">{{i.price}}</span>
+						</template>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<section class="menuCategorySection">
+		<h2>드레싱</h2>
+		<ul class="menuList">
+			<li v-for="i in menuData.dressing.content">
+				<a :href="'/menu/'+i.rowSeq" class="box">
+					<div class="imageBox">
+						<img src="https://dummyimage.com/400x150/ededed/5e5e5e.png&text=sample+image" alt="">
+						<ul class="chip">
+							<li v-if="i.veganYn=='Y'"><i class="xi-garden" title="비건 메뉴"></i></li>
+							<li v-if="i.discountYn=='Y'"><i class="xi-coupon" title="세일 메뉴"></i></li>
+						</ul>
+					</div>
+					<div class="nameBox">
+						<p>{{i.koName}}</p>
+						<p>{{i.enName}}</p>
+					</div>
+					<div class="priceBox">
+						<template v-if="i.discountYn=='Y'">
+							<span class="now">{{i.discountPrice}}</span>
+							<span class="prev">{{i.price}}</span>
+						</template>
+						<template v-if="i.discountYn=='N'">
+							<span class="now">{{i.price}}</span>
+						</template>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- 디버깅 -->
+	<!-- <table class="table table-type-debug">
+		<tr>
+			<td><pre>menuData={{menuData}}</pre></td>
+		</tr>
+	</table> -->
+</div>
+<script layout:fragment="content-js">
+function fn_initVue(){
+	vm=new Vue({
+		el:".mainApp",
+		data:{
+			menuData:{
+				warmBowl:{content:[]},
+				salady:{content:[]},
+				sand:{content:[]},
+				wrap:{content:[]},
+				warmWrap:{content:[]},
+				base:{content:[]},
+				mainTopping:{content:[]},
+				subTopping:{content:[]},
+				dressing:{content:[]}
+			}
+		},
+		methods:{
+			fn_init(){
+				gfn_httpPost("/menu/allList").then(res=>{
+					if(gfn_httpOk(res.data)){
+						let c=res.data.contents;
+						let menu=this.menuData;
+						menu.warmBowl.content=c.filter(i=>i.menuTypeSeq==1);
+						menu.salady.content=c.filter(i=>i.menuTypeSeq==2);
+						menu.sand.content=c.filter(i=>i.menuTypeSeq==3);
+						menu.wrap.content=c.filter(i=>i.menuTypeSeq==4);
+						menu.warmWrap.content=c.filter(i=>i.menuTypeSeq==5);
+						menu.mainTopping.content=c.filter(i=>i.menuTypeSeq==6);
+						menu.subTopping.content=c.filter(i=>i.menuTypeSeq==7);
+						menu.dressing.content=c.filter(i=>i.menuTypeSeq==8);
+						menu.base.content=c.filter(i=>i.menuTypeSeq==9);
+					}
+				});
+			}
+		},
+		created(){},
+		mounted(){
+			this.fn_init();
+		}
+	});
+}
+</script>
+</html>

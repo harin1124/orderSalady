@@ -1,0 +1,55 @@
+.table th, .table td { border: 1px solid #ccc; padding: 3px; }
+
+.table.table-type-debug { font: 11px "D2Coding", monosapce; line-height: 1.3; color: #333; }
+
+.menuCategorySection { margin-bottom: 30px; }
+
+.menuCategorySection:first-child { margin-top: 50px; }
+
+.menuCategorySection h2 { display: inline-block; width: 100%; margin-bottom: 15px; font: 22px "notoB", sans-serif; text-align: center; }
+
+.menuCategorySection .menuList { width: 100%; }
+
+.menuCategorySection .menuList::after { content: ""; display: block; clear: both; }
+
+.menuCategorySection .menuList > li { display: flex; width: calc(100% / 4); float: left; }
+
+.menuCategorySection .menuList > li a { display: block; margin: 15px; border: 1px solid #ccc; color: #333; border-radius: 5px; overflow: hidden; cursor: pointer; transition: ease .2s; }
+
+.menuCategorySection .menuList > li a:hover, .menuCategorySection .menuList > li a:focus { box-shadow: 0px 1px 13px #04040433; }
+
+.menuCategorySection .menuList .imageBox { display: block; position: relative; }
+
+.menuCategorySection .menuList .imageBox img { display: block; width: 100%; margin: 0 auto; }
+
+.menuCategorySection .menuList .imageBox .chip { position: absolute; bottom: 5px; left: 10px; }
+
+.menuCategorySection .menuList .nameBox { padding: 10px; }
+
+.menuCategorySection .menuList .nameBox p { width: 100%; }
+
+.menuCategorySection .menuList .nameBox p:first-child { font: 14px "notoB", sans-serif; line-height: 14px; }
+
+.menuCategorySection .menuList .nameBox p:last-child { font: 12px "notoB", sans-serif; line-height: 12px; }
+
+.menuCategorySection .menuList .priceBox { padding: 10px; }
+
+.menuCategorySection .menuList .priceBox .now { font: 14px "notoB", sans-serif; line-height: 14px; }
+
+.menuCategorySection .menuList .priceBox .prev { font: 12px "notoR", sans-serif; line-height: 12px; text-decoration: line-through; }
+
+.chip::after { content: ""; display: block; clear: both; }
+
+.chip li { float: left; padding: 5px; background: #ffffff8a; border: 1px solid #ccc; border-radius: 30px; }
+
+.chip li i { float: left; }
+
+.nutritionTable { width: 100%; margin-top: 10px; font-size: 13px; }
+
+.menuDetailPage { width: 400px; margin: 15px auto 0; }
+
+.menuDetailPage img { margin-bottom: 10px; }
+
+.menuDetailPage .table { font-size: 13px; }
+
+.menuDetailPage .chip { margin: 10px 0; }

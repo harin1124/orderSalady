@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{layout/layout}">
+<div layout:fragment="content" class="mainApp">
+	<div class="menuDetailPage">
+		<img src="https://dummyimage.com/400x150/ededed/5e5e5e.png&text=sample+image" alt="">
+		<h2 class="notoB">{{menuInfoData.koName}} {{menuInfoData.enName}}</h2>
+		<h3 class="mb10">{{menuInfoData.menuDesc}}</h3>
+		<ul class="chip">
+			<li v-if="menuInfoData.veganYn=='Y'"><i class="xi-garden" title="비건 메뉴"></i></li>
+			<li v-if="menuInfoData.discountYn=='Y'"><i class="xi-coupon" title="할인 메뉴"></i></li>
+		</ul>
+		<table class="table" style="width:100%">
+			<colgroup>
+				<col width="100px"/>
+			</colgroup>
+			<tr>
+				<th>가격</th>
+				<td>
+					<template v-if="menuInfoData.discountYn=='Y'">
+						<span class="now notoB">{{menuInfoData.discountPrice}}</span>
+						<span class="prev" style="text-decoration:line-through">{{menuInfoData.price}}</span>
+					</template>
+					<template v-if="menuInfoData.discountYn=='N'">
+						<span class="now">{{menuInfoData.price}}</span>
+					</template>
+				</td>
+			</tr>
+			<tr v-if="menuInfoData.discountYn=='Y' && menuInfoData.discountPeriodYn=='Y'">
+				<th>할인기간</th>
+				<td>{{menuInfoData.discountStartDate}} ~ {{menuInfoData.discountEndDate}}</td>
+			</tr>
+		</table>
+		
+		<table class="table nutritionTable" v-if="nutritionData != null">
+			<colgroup>
+				<col width="100px"/>
+			</colgroup>
+			<tr>
+				<th>용량(g)</th>
+				<td>{{nutritionData.capacity}}</td>
+			</tr>
+			<tr>
+				<th>열량(Kcal)</th>
+				<td>{{nutritionData.calories}}</td>
+			</tr>
+			<tr>
+				<th>탄수화물(g)</th>
+				<td>{{nutritionData.carbohydrate}}</td>
+			</tr>
+			<tr>
+				<th>당류(g)</th>
+				<td>{{nutritionData.sugar}}</td>
+			</tr>
+			<tr>
+				<th>단백질(g)</th>
+				<td>{{nutritionData.protein}}</td>
+			</tr>
+			<tr>
+				<th>지방(g)</th>
+				<td>{{nutritionData.fat}}</td>
+			</tr>
+			<tr>
+				<th>트랜스지방(g)</th>
+				<td>{{nutritionData.transFat}}</td>
+			</tr>
+			<tr>
+				<th>포화지방(g)</th>
+				<td>{{nutritionData.saturatedFat}}</td>
+			</tr>
+			<tr>
+				<th>콜레스테롤(g)</th>
+				<td>{{nutritionData.cholesterol}}</td>
+			</tr>
+			<tr>
+				<th>나트륨(mg)</th>
+				<td>{{nutritionData.sodium}}</td>
+			</tr>
+		</table>
+	</div>
+	
+	<!-- 디버깅 -->
+	<!-- <table class="table table-type-debug">
+		<tr>
+			<td><pre>metaData={{metaData}}</pre></td>
+			<td><pre>menuInfoData={{menuInfoData}}</pre></td>
+			<td><pre>nutritionData={{nutritionData}}</pre></td>
+		</tr>
+	</table> -->
+</div>
+<script layout:fragment="content-js">
+function fn_initVue(){
+	vm=new Vue({
+		el:".mainApp",
+		data:{
+			metaData:{
+				rowSeq:[[${rowSeq}]]
+			},
+			menuInfoData:{},
+			nutritionData:{}
+		},
+		methods:{
+			async fn_init(){
+				await this.fn_getDetail();
+				await this.fn_getNutrition();
+			},
+			fn_getDetail(){
+				return gfn_httpPost(`/menu/detail/${this.metaData.rowSeq}`).then(res=>{
+					if(gfn_httpOk(res.data)){
+						this.menuInfoData=res.data.contents;
+					}
+				});
+			},
+			fn_getNutrition(){
+				return gfn_httpPost(`/menu/nutrition/${this.metaData.rowSeq}`).then(res=>{
+					if(gfn_httpOk(res.data)){
+						this.nutritionData=res.data.contents;
+					}
+				});
+			}
+		},
+		created(){},
+		mounted(){
+			this.fn_init();
+		}
+	});
+}
+</script>
+</html>

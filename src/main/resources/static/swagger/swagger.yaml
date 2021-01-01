@@ -1,0 +1,22 @@
+swagger: "2.0"
+info:
+  description: "OrderSalady 토이 프로젝트입니다."
+  version: "1.0.0"
+  title: "OrderSalady"
+  contact:
+    email: "lolrin1124@gmail.com"
+host: "localhost:8090"
+basePath: "/v2"
+tags:
+- name: "admin"
+  description: "어드민 관련"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "http"
+paths:
+  /admin:
+    post:
+      tags:
+      - "admin"

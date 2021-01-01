@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderSalady.menu.mapper.MenuInfoMapper">
+	<sql id="sqlMenuInfoSelect">
+		SELECT
+			MI.ROW_SEQ,
+			MI.KO_NAME,
+			MI.EN_NAME,
+			MI.MENU_DESC,
+			MI.VEGAN_YN,
+			MI.MENU_TYPE_SEQ,
+			MT.KO_NAME AS MENU_TYPE_KO_NAME,
+			MI.PRICE,
+			MI.SALE_YN,
+			MI.SALE_PERIOD_YN,
+			MI.SALE_START_DATE,
+			MI.SALE_END_DATE,
+			MI.DISCOUNT_YN,
+			MI.DISCOUNT_PRICE,
+			MI.DISCOUNT_PERIOD_YN,
+			MI.DISCOUNT_START_DATE,
+			MI.DISCOUNT_END_DATE,
+			MI.REG_DATE,
+			MI.DEL_YN,
+			MI.DEL_DATE
+		FROM MENU_INFO MI
+		INNER JOIN MENU_TYPE MT ON MT.ROW_SEQ=MI.MENU_TYPE_SEQ
+	</sql>
+	
+	<select id="selectMenuInfoAllList" resultType="MenuInfoVo">
+		<include refid="sqlMenuInfoSelect"/>
+		WHERE MI.DEL_YN='N' AND MI.SALE_YN='Y'
+	</select>
+	
+	<select id="selectMenuInfo" parameterType="MenuInfoDto" resultType="MenuInfoVo">
+		<include refid="sqlMenuInfoSelect"/>
+		WHERE MI.ROW_SEQ=#{rowSeq}
+	</select>
+</mapper>

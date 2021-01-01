@@ -9,8 +9,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder(){
@@ -18,24 +21,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Override
-	protected void configure(HttpSecurity httpSecurity)throws Exception{
+	protected void configure(HttpSecurity http)throws Exception{
 		/*
 			TODO:페이지 권한설정
 			- /user/login.do, /user/join.do 는 누구나 가능하고 나머지 /user/**는 모두 불가능 
 			- /admin/user/login.do 는 누구나 가능하고 나머지 /admin/user/**는 모두 불가능
 		*/
-		httpSecurity.csrf().disable();
-		//httpSecurity.authorizeRequests().antMatchers("/**").permitAll();
-			//.antMatchers("/admin/user/**").permitAll()
-			//.antMatchers("/admin/**").hasRole("ADMIN")
-			//.antMatchers("/**").permitAll();
-		httpSecurity.authorizeRequests().antMatchers("/admin/user/login.do", "/admin/user/logout.do", "/admin/user/join.do").permitAll()
-		.and().authorizeRequests().antMatchers("/admin/user/main.do").hasRole("ADMIN");
-		//.antMatchers("/admin/**").hasRole("ADMIN");
+		http.csrf().disable();
+		//.authorizeRequests() //특정 경로 허용
+		//.antMatchers("/", "/main", "/user/joinForm", "/user/join").permitAll()
+		//.anyRequest().authenticated();
+		
+		//.and().formLogin().loginPage("/user/loginForm").permitAll().loginProcessingUrl("/login");
+		//.successHandler().failureHandler() 핸들러 처리
+		//.and().logout().logoutUrl("").logoutSuccessHandler().invalidateHttpSession(true).deleteCookies("JSESSIONID");
 	}
 	
 	@Override
 	public void configure(WebSecurity webSecurity)throws Exception{
-		webSecurity.ignoring().antMatchers("/css/**", "/fonts/**", "/images/**", "/js/**", "/plugins/**");
+		//webSecurity.ignoring().antMatchers("/css/**", "/fonts/**", "/images/**", "/js/**", "/plugins/**");
+		webSecurity.ignoring().antMatchers("/templates/**", "/css/**", "/fonts/**", "/images/**", "/js/**", "/plugins/**");
     }
 }

@@ -10,8 +10,8 @@
 	</appender>
 	
 	<!-- Logger -->
-	<logger name="saladyOrder" level="INFO" appender-ref="console"/>
-	
+	<!-- <logger name="saladyOrder" level="INFO" appender-ref="console"/> -->
+
 	<!-- BeanFactory -->
 	<logger level="OFF" appender-ref="console" name="org.springframework.beans.factory.support.DefaultListableBeanFactory"/>
 	<!-- ClassPathBeanDefinitionScanner -->
@@ -23,11 +23,21 @@
 	<!-- Thymeleaf -->
 	<logger level="OFF" appender-ref="console" name="org.thymeleaf.TemplateEngine"/>
 	<!-- Servlet -->
-	<logger level="INFO" appender-ref="console" name="org.	.web.servlet.DispatcherServlet"/>
+	<logger level="INFO" appender-ref="console" name="org.web.servlet.DispatcherServlet"/>
 	<logger level="OFF" appender-ref="console" name="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"/>
-
+	<!-- MYBATIS -->
+	<logger level="OFF" appender-ref="console" name="org.mybatis.spring.SqlSessionUtils"/>
+	<!-- JDBC -->
+	<logger level="OFF" name="jdbc.connection"/>
+	<logger level="OFF" name="jdbc.audit"/>
+	<logger level="OFF" name="jdbc.sqltiming"/>
+	<logger level="INFO" name="jdbc.sqlonly"/>
+	<logger level="OFF" name="jdbc.resultsettable"/>
+	<logger level="OFF" name="jdbc.resultset"/>
+	<!-- Log4jdbc -->
+	<!-- <logger level="INFO" appender-ref="console" name="log4jdbc.log4j2"/> -->
 	<!-- Root Logger -->
-	<root level="context">
+	<root level="INFO">
 		<appender-ref ref="console"/>
 	</root>
 </configuration>

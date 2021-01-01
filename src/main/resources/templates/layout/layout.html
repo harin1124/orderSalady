@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0"/>
+	<meta http-equiv="cache-control" content="no-cache"/>
+	<meta http-equiv="pragma" content="no-cache"/>
+	<title>오더 샐러디</title>
+
+	<!-- STYLE -->
+	<link rel="stylesheet" href="/css/compact.css">
+	
+	<!-- SCRIPT -->
+	<script src="/plugins/vue-2.6.12/vue.js"></script>
+	<!-- <script src="/plugins/vue-2.6.12/vue.min.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+	
+	<script src="/js/constant.js"></script>
+	<script src="/js/common.js"></script>
+	<th:block layout:fragment="content-css"/>
+	<script layout:fragment="content-js"></script>
+	<script>
+		window.addEventListener('DOMContentLoaded',()=>{
+			if(fn_initVue){
+				fn_initVue();
+			}
+		});
+		window.onload=()=>{};
+	</script>
+</head>
+<body>
+	<th:block th:replace="layout/header :: headerFragment"/>
+	<div layout:fragment="content"></div>
+	<th:block th:replace="layout/footer :: footerFragment"/>
+</body>
+</html>

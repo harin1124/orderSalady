@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{layout/user/layout}">
+<div layout:fragment="content" class="mainApp">
+	회원가입 페이지
+	<input type="text" name="userId" ref="userId" v-model="joinData.userId">
+	<input type="password" name="userPw" ref="userPw" v-model="joinData.userPw">
+	<button type="button" @click="fn_joinSubmit()">회원가입</button>
+</div>
+<script layout:fragment="content-js">
+function fn_initVue(){
+	vm=new Vue({
+		el:".mainApp",
+		data:{
+			joinData:{userId:"", userPw:""}
+		},
+		methods:{
+			fn_joinSubmit(){
+				if(this.fn_joinValid()){
+					gfn_httpPost("/user/join", this.joinData).then(res=>{
+						console.log("성공");
+					});
+				}
+			},
+			fn_joinValid(){
+				//console.log("회원가입 밸리데이션");
+				if(this.joinData.userId==""){
+					alert("아이디를 입력하세요");
+					this.$refs.userId.focus();
+					return false;
+				}
+				if(this.joinData.userPw==""){
+					alert("비밀번호를 입력하세요");
+					this.$refs.userPw.focus();
+					return false;
+				}
+				return true;
+			}
+		}
+	});
+}
+</script>
