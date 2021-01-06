@@ -27,7 +27,10 @@ public class MenuUtil {
 	public Function<MenuNutritionVo,MenuNutritionDto> ConvertMenuNutritionVoToDto(){
 		return i -> MenuNutritionDto.builder()
 			.rowSeq(i.getRowSeq())
+			.menuTypeSeq(i.getMenuTypeSeq())
+			.menuTypeKoName(i.getMenuTypeKoName())
 			.menuInfoSeq(i.getMenuInfoSeq())
+			.menuInfoKoName(i.getMenuInfoKoName())
 			.capacity(i.getCapacity())
 			.calories(i.getCalories())
 			.carbohydrate(i.getCarbohydrate())

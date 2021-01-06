@@ -15,7 +15,10 @@ import lombok.ToString;
 @AllArgsConstructor
 public class MenuNutritionDto {
 	private Integer rowSeq;
+	private Integer menuTypeSeq;
+	private String menuTypeKoName;
 	private Integer menuInfoSeq;
+	private String menuInfoKoName;
 	private Integer capacity;
 	private Integer calories;
 	private Integer carbohydrate;

@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 public class NutritionComponentController {
 	@GetMapping("/main")
 	public ModelAndView pageNutritionComponentMain(){
-		System.out.println("컨트롤러 진입..");
 		ModelAndView mv=new ModelAndView("nutritionComponent/main");
 		return mv;
 	}

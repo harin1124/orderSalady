@@ -27,9 +27,7 @@ function fn_initVue(){
 			},
 			fn_login(){
 				if(this.fn_valid()){
-					//this.$refs.mainForm.submit();
-					gfn_httpPost('/admin/user/login', {userId:this.userId, userPw:this.userPw}).then(res=>{
-						console.log('성공');
+					gfn_httpPost("/admin/user/login", {userId:this.userId, userPw:this.userPw}).then(res=>{
 						location.href="/admin/main";
 					});
 				}

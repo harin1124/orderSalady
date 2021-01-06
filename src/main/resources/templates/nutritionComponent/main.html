@@ -1,16 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{layout/layout}">
 <div layout:fragment="content" class="mainApp">
-	영양 정보 화면입니다.
+	<table class="table" style="width:80%; margin:30px auto">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제품명</th>
+				<th>용량</th>
+				<th>칼로리</th>
+				<th>탄수화물</th>
+				<th>당류</th>
+				<th>단백질</th>
+				<th>지방</th>
+				<th>트랜스지방</th>
+				<th>포화지방</th>
+				<th>콜레스테롤</th>
+				<th>나트륨</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr v-for="(item, index) in nutritionList">
+				<td>{{index+1}}</td>
+				<td>{{item.menuTypeKoName}}-{{item.menuInfoKoName}}</td>
+				<td>{{item.capacity}}</td>
+				<td>{{item.calories}}</td>
+				<td>{{item.carbohydrate}}</td>
+				<td>{{item.sugar}}</td>
+				<td>{{item.protein}}</td>
+				<td>{{item.fat}}</td>
+				<td>{{item.transFat}}</td>
+				<td>{{item.saturatedFat}}</td>
+				<td>{{item.cholesterol}}</td>
+				<td>{{item.sodium}}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 <script layout:fragment="content-js">
 function fn_initVue(){
 	vm=new Vue({
 		el:".mainApp",
-		data:{},
+		data:{
+			nutritionList:null
+		},
 		methods:{
 			fn_init(){
-				
+				this.fn_menuNutritionList();
+			},
+			fn_menuNutritionList(){
+				gfn_httpGet("/nutritionComponent/getMenuNutritionList").then(res=>{
+					this.nutritionList=res.data.contents;
+				});
 			}
 		},
 		created(){},
