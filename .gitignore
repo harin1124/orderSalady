@@ -48,7 +48,8 @@ local.properties
 *.tar.gz
 *.rar
 
-
+# Custom #
 *.properties
+.gradle/
 
 # End of https://www.toptal.com/developers/gitignore/api/java,web,eclipse
