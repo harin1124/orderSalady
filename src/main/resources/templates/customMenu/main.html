@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{layout/layout}">
+<div layout:fragment="content" class="mainApp">
+	커스텀 메뉴 진입 화면
+</div>
+<script layout:fragment="content-js">
+function fn_initVue(){
+	vm=new Vue({
+		el:".mainApp",
+		data:{},
+		methods:{
+			fn_init(){
+				//
+			}
+		},
+		created(){},
+		mounted(){
+			this.fn_init();
+		}
+	});
+}
+</script>
+</html>
