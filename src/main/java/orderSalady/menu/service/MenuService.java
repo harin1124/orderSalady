@@ -11,14 +11,14 @@ import orderSalady.menu.domain.MenuInfoVo;
 import orderSalady.menu.domain.MenuNutritionDto;
 import orderSalady.menu.domain.MenuNutritionVo;
 import orderSalady.menu.mapper.MenuInfoMapper;
-import orderSalady.menu.mapper.MenuNutritionMapper;
 import orderSalady.menu.util.MenuUtil;
+import orderSalady.nutritionComponent.mapper.NutritionComponentMapper;
 
 @Service
 @RequiredArgsConstructor
 public class MenuService {
 	private final MenuInfoMapper menuInfoMapper;
-	private final MenuNutritionMapper menuNutritionMapper;
+	private final NutritionComponentMapper nutritionComponentMapper;
 	private final MenuUtil menuUtil;
 	
 	public List<MenuInfoDto> menuAllList(){
@@ -36,7 +36,7 @@ public class MenuService {
 	}
 	
 	public MenuNutritionDto menuNutrition(MenuNutritionDto param){
-		MenuNutritionVo result=menuNutritionMapper.selectMenuNutrition(param);
+		MenuNutritionVo result=nutritionComponentMapper.selectMenuNutrition(param);
 		return (result==null)?null:menuUtil.ConvertMenuNutritionVoToDto().apply(result);
 	}
 }
